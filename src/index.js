@@ -150,8 +150,8 @@ class ReactSigmaGraph extends React.Component {
     });
     return filteredEdges.map( (d, i) => {
       d.id = `e${i}`;
-      d.color = this.props.edgeColor || EDGE_COLOR;
-      d.size = 2;
+      d.color = rawEdges[i].color;
+      d.size = 2 || rawEdges[i].size;
       return d;
     });
   }
@@ -229,6 +229,7 @@ class ReactSigmaGraph extends React.Component {
     }
     let _nodes = this.getFormattedNodes();
     let _edges = this.getEdges();
+    console.log(_edges)
     if (this.props.ignoreFloaters) {
       let allEdgeIds = new Map();
       for(let e of _edges) {
